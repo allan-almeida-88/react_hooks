@@ -1,4 +1,4 @@
-import { IconLetterCase, IconMathGreater, IconMenu, IconNumber, IconNumbers, IconUsers, IconX } from "@tabler/icons-react";
+import { IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumber, IconNumbers, IconUsers, IconWindow, IconX } from "@tabler/icons-react";
 import { MenuItem } from "../../data/models/MenuItem";
 import { MenuSecao } from "../../data/models/MenuSecao";
 import Logo from "./Logo";
@@ -10,7 +10,7 @@ export default function MenuPrincipal() {
     const secoes = [
         {
             titulo: "Essenciais",
-            aberta: true,
+            aberta: false,
             itens: [
                 {titulo: 'Contador', url: '/essenciais/contador', tag: 'useState', icone: <IconNumbers />},
                 {titulo: 'Votacao', url: '/essenciais/votacao', tag: 'useState', icone: <IconUsers />},
@@ -21,6 +21,15 @@ export default function MenuPrincipal() {
                 {titulo: 'Manipulando dom useRef', url: '/essenciais/refElemento', tag: 'useRef', icone: <IconLetterCase />},
                 {titulo: 'Qtd de caracteres', url: '/essenciais/contagemCaracteresRef', tag: 'useRef', icone: <IconLetterCase />},
             ],
+        },
+        {
+            titulo: "Personalizados",
+            aberta: true,
+            itens: [
+                {titulo: 'Modal', url: '/personalizados/modal', tag: 'useToggle', icone: <IconNumbers />},
+                {titulo: 'Tamanho Janela', url: '/personalizados/tamanhoJanela', tag: 'useSizeWindow', icone: <IconWindow />},
+                {titulo: 'Validando senha', url: '/personalizados/senha', tag: 'useStateValidado', icone: <IconLock />},
+            ]
         },
     ];
     const mini = false;
