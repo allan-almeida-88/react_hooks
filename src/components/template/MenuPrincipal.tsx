@@ -1,41 +1,30 @@
-import { IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumber, IconNumbers, IconUsers, IconWindow, IconX } from "@tabler/icons-react";
+
 import { MenuItem } from "../../data/models/MenuItem";
 import { MenuSecao } from "../../data/models/MenuSecao";
 import Logo from "./Logo";
 import MenuPrincipalItem from "./MenuPrincipalItem";
 import MenuPrincipalSecao from "./MenuPrincipalSecao";
 import Flex from "./Flex";
+import useToggle from "@/data/hooks/useToggle";
+import useTamanhoJanela from "@/data/hooks/useTamanhoJanela";
+import { useEffect } from "react";
+import useBoolean from "@/data/hooks/useBoolean";
+import useMenu from "@/data/hooks/useMenu";
+import { IconMenu, IconX } from "@tabler/icons-react";
 
 export default function MenuPrincipal() {
-    const secoes = [
-        {
-            titulo: "Essenciais",
-            aberta: false,
-            itens: [
-                {titulo: 'Contador', url: '/essenciais/contador', tag: 'useState', icone: <IconNumbers />},
-                {titulo: 'Votacao', url: '/essenciais/votacao', tag: 'useState', icone: <IconUsers />},
-                {titulo: 'Consumindo API', url: '/essenciais/consultaAPI', tag: 'useEffect', icone: <IconUsers />},
-                {titulo: 'Maior número', url: '/essenciais/maior', tag: 'useEffect', icone: <IconMathGreater />},
-                {titulo: 'Qtd de caracteres', url: '/essenciais/contagemCaracteres', tag: 'useEffect', icone: <IconLetterCase />},
-                {titulo: 'useState Vs useRef', url: '/essenciais/stateVsRef', tag: 'useRef', icone: <IconLetterCase />},
-                {titulo: 'Manipulando dom useRef', url: '/essenciais/refElemento', tag: 'useRef', icone: <IconLetterCase />},
-                {titulo: 'Qtd de caracteres', url: '/essenciais/contagemCaracteresRef', tag: 'useRef', icone: <IconLetterCase />},
-            ],
-        },
-        {
-            titulo: "Personalizados",
-            aberta: true,
-            itens: [
-                {titulo: 'Modal', url: '/personalizados/modal', tag: 'useToggle', icone: <IconNumbers />},
-                {titulo: 'Tamanho Janela', url: '/personalizados/tamanhoJanela', tag: 'useSizeWindow', icone: <IconWindow />},
-                {titulo: 'Validando senha', url: '/personalizados/senha', tag: 'useStateValidado', icone: <IconLock />},
-            ]
-        },
-    ];
-    const mini = false;
+    const {secoes, mini, setToggleMini, alternarSecao} = useMenu()
+
+    
+    
     function renderizarSecoes() {
         return secoes.map((secao: MenuSecao) => (
-            <MenuPrincipalSecao key={secao.titulo} titulo={secao.titulo} mini={mini} aberta={secao.aberta}>
+            <MenuPrincipalSecao key={secao.titulo} 
+                titulo={secao.titulo} 
+                mini={mini} 
+                aberta={secao.aberta}
+                onClick={() => alternarSecao(secao)}
+            >
                 {renderizarItens(secao)}
             </MenuPrincipalSecao>
         ));
@@ -50,6 +39,7 @@ export default function MenuPrincipal() {
                 tag={item.tag}
                 url={item.url}
                 mini={mini}
+                selecionado={item.selecionado}
             />
         ));
     }
@@ -66,6 +56,9 @@ export default function MenuPrincipal() {
         >
             <Flex center className="m-7">
                 {!mini && <Logo />}
+                <div className="cursor-pointer" onClick={() => setToggleMini()}>
+                    {mini ? <IconMenu /> : <IconX />}
+                </div>
             </Flex>
             <nav className="flex flex-col gap-4 m-7">{renderizarSecoes()}</nav>
         </aside>

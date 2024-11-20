@@ -28,6 +28,7 @@ export default function useTamanhoJanela() {
     }
 
     const dimensoes = {
+        xs: entre(Number.MIN_VALUE, 640),
         sm: entre(640, 768),
         md: entre(768, 1024),
         lg: entre(1024, 1280),
@@ -37,6 +38,5 @@ export default function useTamanhoJanela() {
 
     const tamanhoVerdadeiro = Object.entries(dimensoes).filter((el) => el[1])
 
-    console.log(tamanhoVerdadeiro[0]?.[0])
     return tamanhoVerdadeiro[0]?.[0];
 }
