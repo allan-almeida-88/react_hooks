@@ -1,4 +1,4 @@
-import { IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumber, IconNumbers, IconUsers, IconWindow, IconX } from "@tabler/icons-react";
+import { IconForms, IconLetterCase, IconLock, IconMathGreater, IconMenu, IconNumber, IconNumbers, IconPin, IconUsers, IconWindow, IconX } from "@tabler/icons-react";
 export const secoes = [
     {
         titulo: "Essenciais",
@@ -25,10 +25,19 @@ export const secoes = [
     },
     {
         titulo: "Contexto",
-        aberta: true,
+        aberta: false,
         itens: [
             {titulo: 'Loja', url: '/contexto/loja', tag: 'useContext', icone: <IconNumbers />},
             
+        ]
+    },
+    {
+        titulo: "Outros",
+        aberta: true,
+        itens: [
+            {titulo: 'useMemo1', url: '/outros/memoizacao', tag: 'useMemo', icone: <IconPin />},
+            {titulo: 'Memoizando funcoes', url: '/outros/memoizandoFuncoes', tag: 'useCallback', icone: <IconPin />},
+            {titulo: 'Imperative Handle', url: '/outros/formularioImperativeHandle', tag: 'useImperativeHandle', icone: <IconForms />}
         ]
     }
 ];
